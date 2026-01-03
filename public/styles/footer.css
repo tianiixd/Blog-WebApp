@@ -1,0 +1,14 @@
+:root {
+  --footer-bg: #404756;
+  --text-color: #ebecf0;
+  --color-hover: #58c4dc;
+}
+
+.site-footer {
+  background-color: var(--footer-bg);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-top: auto;
+}

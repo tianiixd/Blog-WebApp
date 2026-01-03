@@ -1,0 +1,47 @@
+:root {
+  --header-bg: #23272f;
+  --text-color: #ebecf0;
+  --color-hover: #58c4dc;
+  --color2-hover: #86d9ca;
+}
+
+.site-header {
+  background-color: var(--header-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 30px;
+  height: 4rem;
+  width: 100%;
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  transition: 0.2s ease-in-out;
+}
+
+.logo a:hover {
+  color: var(--color-hover);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  letter-spacing: 1px;
+  transition: 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: var(--color-hover);
+}
