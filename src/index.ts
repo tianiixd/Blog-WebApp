@@ -16,7 +16,7 @@ interface IBlogPost extends Document {
 }
 
 // Eto yung pagcreate ng schema sa mongodb
-// we imported the way from mongoose especially the Schema object
+// I imported the way from mongoose especially the Schema object
 const blogSchema = new Schema({
   blogTitle: { type: String, required: true },
   message: { type: String, required: true },
