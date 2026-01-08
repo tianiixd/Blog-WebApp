@@ -1,6 +1,10 @@
 declare const Swal: any;
+declare const axios: any;
 
 const composeForm = document.getElementById("composeBlog") as HTMLFormElement;
+
+const MAX_TITLE_LENGTH = 50;
+const MAX_POST_LENGTH = 500;
 
 composeForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -26,18 +30,37 @@ composeForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (title.length > MAX_TITLE_LENGTH) {
+    Swal.fire({
+      icon: "warning",
+      title: `Title is too long! (Max ${MAX_TITLE_LENGTH} chars)`,
+      text: `You have ${title.length} characters.`,
+      showConfirmButton: true,
+      confirmButtonText: "Got it!",
+      heightAuto: false,
+    });
+    return;
+  }
+
+  if (post.length > MAX_POST_LENGTH) {
+    Swal.fire({
+      icon: "warning",
+      title: `Post is too long! (Max ${MAX_POST_LENGTH} chars)`,
+      text: `You have ${post.length} characters.`,
+      showConfirmButton: true,
+      confirmButtonText: "Got it!",
+      heightAuto: false,
+    });
+    return;
+  }
+
   try {
-    const response = await fetch("/compose", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, post }),
+    const response = await axios.post("/compose", {
+      title: title,
+      post: post,
     });
 
-    const result = await response.json();
-
-    if (result.success) {
+    if (response.data.success) {
       Swal.fire({
         icon: "success",
         title: "Post published successfully!",
@@ -49,19 +72,24 @@ composeForm.addEventListener("submit", async (event) => {
       });
       titleInput.value = "";
       postInput.value = "";
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: result.message,
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-      });
     }
-  } catch (error) {
-    console.error("Network Error:", error);
-    console.log(error);
+  } catch (error: any) {
+    console.log("Network Error:", error);
+    let msg = "Something went wrong!";
+
+    // chinicheck neto kung may error sa server
+    if (error.response && error.response.data && error.response.data.message) {
+      msg = error.response.data.message;
+    }
+
+    Swal.fire({
+      icon: "error",
+      title: msg,
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    });
   }
 });
