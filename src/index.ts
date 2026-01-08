@@ -15,21 +15,16 @@ interface IBlogPost extends Document {
   message: string;
 }
 
-// Eto yung pagcreate ng schema sa mongodb
-// I imported the way from mongoose especially the Schema object
 const blogSchema = new Schema({
-  blogTitle: { type: String, required: true },
-  message: { type: String, required: true },
+  blogTitle: { type: String, required: true, maxlength: 50 },
+  message: { type: String, required: true, maxlength: 500 },
 });
 
-// mongodb collection eto, and acts as a model too
 const Blog = mongoose.model<IBlogPost>("Blog", blogSchema);
 
-// Configuration eto
 app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "views"));
 
-// Sabay Middlewares eto para di ako malito
 app.use(morgan("dev"));
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.json());
