@@ -4,7 +4,7 @@
 
 ## Features
 
-- Add can post a blog
+- You can post a blog
 - View blog posts
 
 ## Future goals
