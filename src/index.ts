@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const mongoURI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/blogDB";
+const mongoURI = process.env.MONGO_URI;
 
 interface IBlogPost extends Document {
   blogTitle: string;
@@ -31,6 +31,10 @@ app.use(express.json());
 
 async function startServer() {
   try {
+    if (!mongoURI) {
+      throw new Error("MONGO_URI is missing in .env file!");
+    }
+
     await mongoose.connect(mongoURI);
     console.log("Connected to MongoDB!");
 
