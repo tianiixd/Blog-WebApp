@@ -1,6 +1,5 @@
 # My first Blog App built with typescript, express, mongodb
-
-<h2>It's very simple but I learned a lot</h2>
+It's very simple but I learned a lot
 
 ## Features
 
