@@ -1,4 +1,4 @@
-# My first Blog App built with typescript, express, mongodb
+# My first REST API Blog App built with typescript, express, mongodb
 
 It's very simple but I learned a lot
 
