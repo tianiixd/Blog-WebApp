@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
     "build:client": "tsc src/client/script.ts --outDir public/js --module esnext --target es2020 --moduleResolution bundler --watch"
   },
   "keywords": [],
